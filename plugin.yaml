@@ -1,0 +1,16 @@
+name: gemma-memory
+version: 0.2.0
+description: >
+  Long-term memory: every conversation is kept in a local SQLite store, embedded with EmbeddingGemma 2
+  (served by llama.cpp, from 2026-10-06 on), and the most relevant passages are recalled before each
+  reply. Hybrid search (vectors + keywords), pictures, optional dated facts, past chats importable.
+author: Giton22
+license: MIT
+hooks:
+  - on_pre_compress
+  - on_session_switch
+  - on_memory_write
+# Optional but recommended: vector search is ~15x faster with numpy (58 ms vs 0.8 s at 100k memories).
+# Without it the plugin still works in plain Python.
+python_dependencies:
+  - numpy>=1.24
